@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { bindActionCreators, Dispatch } from 'redux'
+import { connect } from 'react-redux'
+import { getCurrentUser } from './reducers/auth'
+import Login from './pages/login'
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppProps {
+  subscribeAuth: () => void
+}
+class App extends React.Component<AppProps, any> {
+  componentDidMount() {
+    this.props.subscribeAuth()
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <Route exact path="/" component={Login} />
+      </BrowserRouter>
+    )
+  }
 }
 
-export default App;
+const mapDipathToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      subscribeAuth: getCurrentUser,
+    },
+    dispatch,
+  )
+export default connect(
+  null,
+  mapDipathToProps,
+)(App)
