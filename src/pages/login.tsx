@@ -2,9 +2,9 @@ import React from 'react'
 import { bindActionCreators, Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import types from '@types'
-import { signInWithFacebook, signOut } from '../reducers/auth'
+import { signInWithFacebook, signOut, AuthState } from '../reducers/auth'
 
-interface LoginProps extends types.AuthState {
+interface LoginProps extends AuthState {
   signIn: () => void
   signOut: () => void
 }

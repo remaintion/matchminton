@@ -52,12 +52,14 @@ const initialState: AuthState = {
   uid: '',
   isLoggedIn: false
 }
-const reducer = (state = initialState, action: AuthAction) => {
+export const reducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
     case 'AUTH_SIGN_IN': {
+      const { payload } = action
       return {
-        ...state,
-        ...action.payload,
+        displayName: payload.displayName || '',
+        photoURL: payload.photoURL || '',
+        uid: payload.uid || '',
         isLoggedIn: true
       }
     }
