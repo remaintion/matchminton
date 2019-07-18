@@ -87,6 +87,7 @@ const StyledWrapped = styled(Layout)`
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     min-height: calc(100vh - 45px) !important;
+    height: calc(100vh - 45px) !important;
   }
   .my-drawer .am-drawer-sidebar {
     background-color: #fff;
